@@ -192,44 +192,48 @@ def pregunta_02():
     return X_train, X_test, y_train, y_test
 
 
-# def pregunta_03():
-#     """
-#     Especificación y entrenamiento del modelo.
-#     """
+def pregunta_03():
+    """
+    Especificación y entrenamiento del modelo.
+    """
+    
+    # Importe SVC
+    from sklearn.svm import SVC
+    # Importe make_column_transformer
+    from sklearn.compose import make_column_transformer,make_column_selector
+    # Importe Pipeline
+    from sklearn.pipeline import Pipeline
+    # Importe OneHotEncoder
+    from sklearn.preprocessing import OneHotEncoder
+    
+    # Cargue las variables.
+    X_train, X_test, y_train, y_test= pregunta_02()
+    
+    # Cree un objeto ColumnTransformer que aplique OneHotEncoder a las columnas
+    # tipo texto. Use make_column_selector para seleccionar las columnas. Las
+    # columnas numéricas no deben ser transformadas.
+    columnTransformer = make_column_transformer(
+        (
+            OneHotEncoder(),
+            make_column_selector(dtype_include=object),
+        ),
+        remainder='passthrough',
+    )
+    
+    
+    # Cree un pipeline que contenga el columnTransformer y el modelo SVC.
+    pipeline = Pipeline(
+        steps=[
+            ('column_transformer', columnTransformer),
+            ('svc_model', SVC()),
+        ],
+    )
+    
+    # Entrene el pipeline con los datos de entrenamiento.
+    pipeline.fit(X_train,y_train)
 
-#     # Importe ColumnTransformer
-#     # Importe SVC
-#     # Importe OneHotEncoder
-#     # Importe Pipeline
-#     from ____ import ____
-
-#     # Cargue las variables.
-#     X_train, _, y_train, _ = pregunta_02()
-
-#     # Cree un objeto ColumnTransformer que aplique OneHotEncoder a las columnas
-#     # tipo texto. Use make_column_selector para seleccionar las columnas. Las
-#     # columnas numéricas no deben ser transformadas.
-#     columnTransformer = make_column_transformer(
-#         (
-#             ____(),
-#             ____(____=____),
-#         ),
-#         remainder=____,
-#     )
-
-#     # Cree un pipeline que contenga el columnTransformer y el modelo SVC.
-#     pipeline = ____(
-#         steps=[
-#             ("____", ____),
-#             ("____", ____),
-#         ],
-#     )
-
-#     # Entrene el pipeline con los datos de entrenamiento.
-#     ____.____(____, ____)
-
-#     # # Retorne el pipeline entrenado
-#     return pipeline
+    # # Retorne el pipeline entrenado
+    return pipeline
 
 
 # def pregunta_04():
