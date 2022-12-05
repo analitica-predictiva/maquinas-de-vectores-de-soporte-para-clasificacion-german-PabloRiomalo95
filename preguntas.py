@@ -161,100 +161,100 @@ def pregunta_01():
     X = df.copy()
     
     # Remueva la columna `default` del DataFrame `X`.
-    X.drop(['default'],inplace=True)
+    X.drop(labels=['default'],axis=1,inplace=True)
 
     # Retorne `X` y `y`
     return X, y
 
 
-def pregunta_02():
-    """
-    Preparación del dataset.
-    """
+# def pregunta_02():
+#     """
+#     Preparación del dataset.
+#     """
 
-    # Importe train_test_split
-    from ____ import ____
+#     # Importe train_test_split
+#     from ____ import ____
 
-    # Cargue los datos de ejemplo y asigne los resultados a `X` y `y`.
-    X, y = pregunta_01()
+#     # Cargue los datos de ejemplo y asigne los resultados a `X` y `y`.
+#     X, y = pregunta_01()
 
-    # Divida los datos de entrenamiento y prueba. La semilla del generador de números
-    # aleatorios es 123. Use 100 patrones para la muestra de prueba.
-    (X_train, X_test, y_train, y_test,) = ____(
-        ____,
-        ____,
-        test_size=____,
-        random_state=____,
-    )
+#     # Divida los datos de entrenamiento y prueba. La semilla del generador de números
+#     # aleatorios es 123. Use 100 patrones para la muestra de prueba.
+#     (X_train, X_test, y_train, y_test,) = ____(
+#         ____,
+#         ____,
+#         test_size=____,
+#         random_state=____,
+#     )
 
-    # Retorne `X_train`, `X_test`, `y_train` y `y_test`
-    return X_train, X_test, y_train, y_test
-
-
-def pregunta_03():
-    """
-    Especificación y entrenamiento del modelo.
-    """
-
-    # Importe ColumnTransformer
-    # Importe SVC
-    # Importe OneHotEncoder
-    # Importe Pipeline
-    from ____ import ____
-
-    # Cargue las variables.
-    X_train, _, y_train, _ = pregunta_02()
-
-    # Cree un objeto ColumnTransformer que aplique OneHotEncoder a las columnas
-    # tipo texto. Use make_column_selector para seleccionar las columnas. Las
-    # columnas numéricas no deben ser transformadas.
-    columnTransformer = make_column_transformer(
-        (
-            ____(),
-            ____(____=____),
-        ),
-        remainder=____,
-    )
-
-    # Cree un pipeline que contenga el columnTransformer y el modelo SVC.
-    pipeline = ____(
-        steps=[
-            ("____", ____),
-            ("____", ____),
-        ],
-    )
-
-    # Entrene el pipeline con los datos de entrenamiento.
-    ____.____(____, ____)
-
-    # # Retorne el pipeline entrenado
-    return pipeline
+#     # Retorne `X_train`, `X_test`, `y_train` y `y_test`
+#     return X_train, X_test, y_train, y_test
 
 
-def pregunta_04():
-    """
-    Evalue el modelo obtenido.
-    """
+# def pregunta_03():
+#     """
+#     Especificación y entrenamiento del modelo.
+#     """
 
-    # Importe confusion_matrix
-    from ____ import ____
+#     # Importe ColumnTransformer
+#     # Importe SVC
+#     # Importe OneHotEncoder
+#     # Importe Pipeline
+#     from ____ import ____
 
-    # Obtenga el pipeline de la pregunta 3.
-    pipeline = pregunta_03()
+#     # Cargue las variables.
+#     X_train, _, y_train, _ = pregunta_02()
 
-    # Cargue las variables.
-    X_train, X_test, y_train, y_test = pregunta_02()
+#     # Cree un objeto ColumnTransformer que aplique OneHotEncoder a las columnas
+#     # tipo texto. Use make_column_selector para seleccionar las columnas. Las
+#     # columnas numéricas no deben ser transformadas.
+#     columnTransformer = make_column_transformer(
+#         (
+#             ____(),
+#             ____(____=____),
+#         ),
+#         remainder=____,
+#     )
 
-    # Evalúe el pipeline con los datos de entrenamiento usando la matriz de confusion.
-    cfm_train = ____(
-        y_true=____,
-        y_pred=____.____(____),
-    )
+#     # Cree un pipeline que contenga el columnTransformer y el modelo SVC.
+#     pipeline = ____(
+#         steps=[
+#             ("____", ____),
+#             ("____", ____),
+#         ],
+#     )
 
-    cfm_test = ____(
-        y_true=____,
-        y_pred=____.____(____),
-    )
+#     # Entrene el pipeline con los datos de entrenamiento.
+#     ____.____(____, ____)
 
-    # Retorne la matriz de confusion de entrenamiento y prueba
-    return cfm_train, cfm_test
+#     # # Retorne el pipeline entrenado
+#     return pipeline
+
+
+# def pregunta_04():
+#     """
+#     Evalue el modelo obtenido.
+#     """
+
+#     # Importe confusion_matrix
+#     from ____ import ____
+
+#     # Obtenga el pipeline de la pregunta 3.
+#     pipeline = pregunta_03()
+
+#     # Cargue las variables.
+#     X_train, X_test, y_train, y_test = pregunta_02()
+
+#     # Evalúe el pipeline con los datos de entrenamiento usando la matriz de confusion.
+#     cfm_train = ____(
+#         y_true=____,
+#         y_pred=____.____(____),
+#     )
+
+#     cfm_test = ____(
+#         y_true=____,
+#         y_pred=____.____(____),
+#     )
+
+#     # Retorne la matriz de confusion de entrenamiento y prueba
+#     return cfm_train, cfm_test
